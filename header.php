@@ -10,6 +10,8 @@
         <h1>이동하기</h1>
         <a href="page/signup.php" >회원가입</a>
         <a href="login.php" nav-link>로그인</a>
+        <a href="user_board.php" nav-link>유저 목록</a>
+        <a href="board.php" nav-link>게시판</a>
     </header>
 </body>
 </html>
