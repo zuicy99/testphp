@@ -1,12 +1,11 @@
 <?php
 $servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "phpsite";
-$conn = new mysqli($servername, $username, $password, $dbname);
+$dbuser = "root";
+$dbpassword = "";
+$dbname = "testphp";
 
 try{
-$db= new PDO("mysql:host={$servername}; dbname={$dbname}", $username, $password);
+$db= new PDO("mysql:host={$servername}; dbname={$dbname}", username: $dbuser, password: $dbpassword);
 
 $db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
 $db->setAttribute(PDO::MYSQL_ATTR_USE_BUFFERED_QUERY, true);

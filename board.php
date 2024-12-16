@@ -3,7 +3,7 @@ include "header.php";
 $servername = "localhost";
 $username = "root";
 $password = "";
-$dbname = "phpsite";
+$dbname = "testphp";
 $conn = new mysqli($servername, $username, $password, $dbname);
 
 try{
