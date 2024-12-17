@@ -1,16 +1,14 @@
 <?php
-session_start();
 
-print_r($_SESSION);
+session_start();
 
 $ses_id = (isset($_SESSION['ses_id']) && $_SESSION['ses_id'] != "") ? $_SESSION['ses_id'] : "";
 $ses_level = (isset($_SESSION['ses_level']) && $_SESSION['ses_level'] != "") ? $_SESSION['ses_level'] : "";
-include "header.php";
+
+if($ses_id == "" || $ses_level != 10){
+    echo "<script>alert('관리자가 아닙니다.'); location.href='../index.php';</script>";
+    exit;
+}
+
+include "../inc/lib.php";
 ?>
-
-
-<main>
-    <h1>메인페이지</h1>
-</main>
-
-

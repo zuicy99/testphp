@@ -12,7 +12,7 @@ $db= new PDO("mysql:host={$servername}; dbname={$dbname}", $username, $password)
 $db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
 $db->setAttribute(PDO::MYSQL_ATTR_USE_BUFFERED_QUERY, true);
 $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); // 오류 출력
-$sql = "SELECT * FROM add_member WHERE 1";
+$sql = "SELECT * FROM member WHERE 1";
 $stmt = $db->prepare($sql);
 $stmt->execute();
 $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -38,7 +38,7 @@ $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <tr>
                 <td><?php echo $row['id']; ?></td>
                 <td><?php echo $row['name']; ?></td>
-                <td><?php echo $row['number']; ?></td>
+                <td><?php echo $row['phone']; ?></td>
             </tr>
         <?php endforeach; ?>
         </tbody>

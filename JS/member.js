@@ -5,4 +5,8 @@ document.addEventListener("DOMContentLoaded",()=>{
         const id = document.querySelector('#f_id').value;
         alert("ㅇㅇㅇ");
     });
+
+
 });
+
+

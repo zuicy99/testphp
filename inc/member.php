@@ -51,9 +51,9 @@ class Member
         $stmt->bindParam(':id', $id);
         $stmt->execute();
 
-        if($stmt->rowCount()){
-            $row= $stmt->fetch();
-            if(password_verify($pw, $row['pw'])){
+        if ($stmt->rowCount()) {
+            $row = $stmt->fetch();
+            if (password_verify($pw, $row['pw'])) {
 
                 //로그인 시간 업데이트
                 $sql = "UPDATE member SET login_dt = now() WHERE id = :id";
@@ -61,13 +61,13 @@ class Member
                 $stmt->bindParam(':id', $id);
                 $stmt->execute();
                 return true;
-            }else{
+            } else {
                 return false;
             }
-        }else{
+        } else {
             return false;
         }
-       
+
     }
 
     public function logout()
@@ -75,8 +75,56 @@ class Member
         session_start();
         session_destroy();
         die("<script>self.location.href = '../index.php';</script>");
-       
+
     }
+
+    public function getInfo($id)
+    {
+        $sql = "SELECT * FROM member WHERE id = :id";
+        $stmt = $this->conn->prepare($sql);
+
+        $stmt->bindParam(':id', $id);
+        $stmt->setFetchMode(PDO::FETCH_ASSOC);
+
+
+        $stmt->execute();
+
+        return $stmt->fetch();
+    }
+
+    public function edit($marray)
+    {
+        $sql = "UPDATE member SET name = :name, phone = :phone, user_icon = :user_icon, pw = :pw";
+        $params = [
+            ':name' => $marray['name'],
+            ':phone' => $marray['phone'],
+            ':user_icon' => $marray['user_icon'],
+            ':pw' => $marray['pw'],
+            ':id' => $marray['id'],
+        ];
+        if ($marray['pw'] != '') {
+            $new_pw = password_hash($marray['pw'], PASSWORD_DEFAULT);
+            $params[':pw'] = $new_pw;
+        }
+
+        $sql .= " WHERE id = :id";
+
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute($params);
+    }
+
+
+    //desc 내림차순
+    public function list()
+    {
+        $sql = "SELECT idx, id, name, phone, create_at, login_dt, level FROM member ORDER BY level DESC";
+        $stmt = $this->conn->prepare($sql);
+        // $stmt->setFetchMode(PDO::FETCH_ASSOC);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+
 }
 
 ?>

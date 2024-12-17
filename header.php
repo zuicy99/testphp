@@ -10,9 +10,14 @@
         <h1>이동하기</h1>
 
         <?php if(isset($ses_id) && $ses_id != ""){ ?>
-            <a href="./page/logout.php" nav-link>로그아웃</a>
-            <a href="user_board.php" nav-link>유저 목록</a>
+            <a href="index.php" nav-link>홈으로</a>
             <a href="board.php" nav-link>게시판</a>
+            <a href="mypage.php" nav-link>마이페이지</a>
+            <a href="./page/logout.php" nav-link>로그아웃</a>
+            <?php if($ses_level == 10){ ?>
+                <a href="./admin/index.php" nav-link>관리자</a>
+                <!-- <a href="user_board.php" nav-link>회원관리</a> -->
+            <?php } ?>
         <?php } else { ?>
             <a href="login.php" nav-link>로그인</a>
             <a href="signup.php" >회원가입</a>
