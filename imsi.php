@@ -1,16 +1,13 @@
 <?php
-include('./inc/dbconfig.php');
-include('./inc/member.php');
+session_start();
 
-$id = 'test02';
-$mem=new Member($db);
 
-// if($mem->id_exists($id)){
-//     echo '존재함';
-// }else{
-//     echo '없음';
-// }
-
-// $member = new Member($db);
-// $member->id_exists('test');
+$ses_id = (isset($_SESSION['ses_id']) && $_SESSION['ses_id'] != "") ? $_SESSION['ses_id'] : "";
+$ses_level = (isset($_SESSION['ses_level']) && $_SESSION['ses_level'] != "") ? $_SESSION['ses_level'] : "";
+include "header.php";
+print_r($_SESSION);
 ?>
+
+<main>
+    <h3>테스트</h3>
+</main>

@@ -82,13 +82,19 @@ class Member
     {
         $sql = "SELECT * FROM member WHERE id = :id";
         $stmt = $this->conn->prepare($sql);
-
         $stmt->bindParam(':id', $id);
         $stmt->setFetchMode(PDO::FETCH_ASSOC);
-
-
         $stmt->execute();
+        return $stmt->fetch();
+    }
 
+    public function getInfoForm($idx)
+    {
+        $sql = "SELECT * FROM member WHERE idx = :idx";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindParam(':idx', $idx);
+        $stmt->setFetchMode(PDO::FETCH_ASSOC);
+        $stmt->execute();
         return $stmt->fetch();
     }
 
@@ -100,15 +106,20 @@ class Member
             ':phone' => $marray['phone'],
             ':user_icon' => $marray['user_icon'],
             ':pw' => $marray['pw'],
-            ':id' => $marray['id'],
         ];
         if ($marray['pw'] != '') {
             $new_pw = password_hash($marray['pw'], PASSWORD_DEFAULT);
             $params[':pw'] = $new_pw;
         }
-
-        $sql .= " WHERE id = :id";
-
+        if($_SESSION == 10 && isset($marray['idx'])&& $marray['idx'] != '' ){
+            $params[':idx'] = $marray['idx'];
+            $params[':level'] = $marray['level'];
+            $sql .= " level = :level";
+            $sql .= " WHERE idx = :idx";
+        }else{
+            $params[':id'] = $marray['id'];
+            $sql .= " WHERE id = :id";
+        }
         $stmt = $this->conn->prepare($sql);
         $stmt->execute($params);
     }
@@ -122,6 +133,29 @@ class Member
         // $stmt->setFetchMode(PDO::FETCH_ASSOC);
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function member_del($idx){
+        $sql = "DELETE FROM member WHERE idx = :idx";
+        $stmt= $this->conn->prepare($sql);
+        $stmt->bindParam(':idx',$idx);
+        $stmt->execute();
+    }
+
+    //프로필 이미지
+    public function profile_upload($id,$new_user_icon,$old_user_icon = ''){
+
+        if($old_user_icon != ''){
+            unlink(PROFILE_DIR . $old_user_icon); //삭제
+        }
+        
+        $tmparr = explode('.', $_FILES['user_icon']['name']);
+        $ext = end($tmparr); //확장자 추출
+        $user_icon = $id . '.' . $ext; // 파일명 생성
+        copy($new_user_icon['tmp_name'], PROFILE_DIR.'/' . $user_icon); // 파일 복사
+        return $user_icon;
+
+
     }
 
 

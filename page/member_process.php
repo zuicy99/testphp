@@ -109,7 +109,7 @@ if ($mode == 'id_check') {
     echo "
     <script>
         alert('회원정보가 수정되었습니다.');
-        // self.location.href='../index.php';
+        self.location.href='../index.php';
     </script> ";
 
 }

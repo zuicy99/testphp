@@ -7,15 +7,13 @@ include "../inc/member.php"; // 회원관리
 
 $sql = "SELECT * FROM member WHERE 1";
 
-
 $mem = new member($db);
 $memArr = $mem->list();
-
 ?>
 
 <script src="./js/member.js"></script>
 <main id="main" class="container">
-    <h1>유저 목록</h1>
+    <h3>유저 목록</h3>
     <table border="1" cellspacing="0" cellpadding="10">
         <thead>
             <tr>
@@ -29,9 +27,6 @@ $memArr = $mem->list();
                 <th>관리</th>
             </tr>
         </thead>
-
-
-
         <?php foreach($memArr as $row): ?>
         <tbody>
             <tr>
@@ -43,11 +38,11 @@ $memArr = $mem->list();
                 <td><?=$row['login_dt']?></td>
                 <td><?=$row['level']?></td>
                 <td>
-                    <button type="button" id="member_edit" class="btn_primary" onclick="edit(<?=$row['idx']?>)">수정</button>
-                    <button type="button" id="member_delete" class="btn_primary" onclick="delete(<?=$row['idx']?>)">삭제</button>
+                    <button type="button" class="btn btn-primary btn_mem_edit" data-idx="<?=$row['idx']?>">수정</button>
+                    <button type="button" class="btn btn-danger btn_mem_delete" data-idx="<?=$row['idx']?>">삭제</button>
                 </td>
             </tr>
-        <?php endforeach; ?>
+            <?php endforeach; ?>
         </tbody>
     </table>
 </main>

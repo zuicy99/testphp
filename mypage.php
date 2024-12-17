@@ -14,7 +14,6 @@ include('./inc/member.php');
 $mem = new Member($db);
 $memArr = $mem->getInfo($ses_id);
 
-print_r($memArr);
 
 
 include('header.php');
@@ -37,7 +36,7 @@ include('header.php');
             <input type="text" name="id" id="f_id" placeholder="아이디" readonly value="<?= $memArr['id']; ?>">
 
             <label for="f_pw">비밀번호</label>
-            <input type="password" name="pw" id="f_pw" placeholder="비밀번호" >
+            <input type="password" name="pw" id="f_pw" placeholder="비밀번호">
 
             <label for="f_pw_check">비밀번호 확인</label>
             <input type="password" name="pw_check" id="f_pw_check" placeholder="비밀번호 확인">
@@ -56,7 +55,8 @@ include('header.php');
                 </div>
 
                 <?php if($memArr['user_icon'] != ''){ ?>
-                <img src="data/profile/<?= $memArr['user_icon']; ?>" alt="" id="f_user_icon_img" style="width: 100px; height: 100px;">
+                <img src="data/profile/<?= $memArr['user_icon']; ?>" alt="" id="f_user_icon_img"
+                    style="width: 100px; height: 100px;">
                 <?php } else { ?>
                 <img src="" alt="" id="f_user_icon_img" style="width: 100px; height: 100px;">
                 <?php } ?>

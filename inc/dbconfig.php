@@ -15,4 +15,8 @@ $sql = "SELECT * FROM add_member WHERE id =:id";
 } catch(PDOException $e){
     echo $e->getMessage();
 }
+define("DOCUMENT_ROOT", $_SERVER['DOCUMENT_ROOT'].'/testphp');
+define("ADMIN_ROOT", DOCUMENT_ROOT . '/admin');
+define("DATA_DIR", DOCUMENT_ROOT . '/data');
+define("PROFILE_DIR", DATA_DIR . '/profile');
 ?>
