@@ -5,22 +5,23 @@ include "../inc/dbconfig.php";
 include "../inc/board.php";
 // include "./js/member.js";
 
-$sql = "SELECT * FROM member WHERE 1";
+$sql = "SELECT * FROM member_mng WHERE 1";
 
 $board = new Board($db);
 $boardArr = $board->list();
 ?>
 
-<script src="./js/member.js"></script>
+<script src="./js/board_input.js"></script>
 <main id="main" class="container">
     <h3>게시판 목록</h3>
     <table border="1" cellspacing="0" cellpadding="10">
         <thead>
             <tr>
                 <th>번호</th>
-                <th>게시판 이름</th>
-                <th>생성일</th>
-                <th>게시물 수</th>
+                <th>작성자</th>
+                <th>제목</th>
+                <th>내용</th>
+                <th>작성일</th>
                 <th>관리</th>
             </tr>
         </thead>
@@ -28,9 +29,10 @@ $boardArr = $board->list();
         <tbody>
             <tr>
                 <td><?=$row['idx']?></td>
-                <td><?=$row['name']?></td>
-                <td><?=$row['create_at']?></td>
-                <td><?=$row['cnt']?></td>
+                <td><?=$row['writer']?></td>
+                <td><?=$row['title']?></td>
+                <td><?=$row['content']?></td>
+                <td><?=$row['creat_at']?></td>
                 <td>
                     <button type="button" class="btn btn-primary btn_mem_edit" data-idx="<?=$row['idx']?>">수정</button>
                     <button type="button" class="btn btn-danger btn_mem_delete" data-idx="<?=$row['idx']?>">삭제</button>
@@ -58,17 +60,21 @@ $boardArr = $board->list();
             </div>
             <div class="modal-body">
                 <div class="mb-3">
-                    <label for="boardTitle" class="form-label">게시판 제목</label>
-                    <input type="text" class="form-control" id="boardTitle" placeholder="제목을 입력하세요">
+                    <label for="writer" class="form-label">작성자</label>
+                    <input type="text" class="form-control" name="writer" id="writer" placeholder="제목을 입력하세요">
                 </div>
                 <div class="mb-3">
-                    <label for="boardContent" class="form-label">게시판 내용</label>
-                    <textarea class="form-control" id="boardContent" rows="5" placeholder="내용을 입력하세요"></textarea>
+                    <label for="title" class="form-label">제목</label>
+                    <input type="text" class="form-control" name="title" id="title" placeholder="제목을 입력하세요">
+                </div>
+                <div class="mb-3">
+                    <label for="content" class="form-label">내용</label>
+                    <textarea class="form-control" name="content" id="content" rows="5" placeholder="내용을 입력하세요"></textarea>
                 </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id='btn_close'>닫기</button>
-                <button type="button" class="btn btn-primary" id="btn_board_create">저장</button>
+                <button type="button" class="btn btn-primary" id="btn_board_submit">저장</button>
             </div>
         </div>
     </div>

@@ -7,6 +7,7 @@
     <title>php입니당</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 
 <body>
@@ -23,6 +24,7 @@
                         <li><a href="imsi.php" class="nav-link text-white">테스트</a></li>
                         <?php if(isset($ses_id) && $ses_id != ""){ ?>
                         <li><a href="mypage.php" class="nav-link text-white">마이페이지</a></li>
+                        <li><a href="board.php" class="nav-link text-white">게시판</a></li>
                         <li><a href="./page/logout.php" class="nav-link text-white">로그아웃</a></li>
                         <?php } else { ?>
                         <li><a href="login.php" class="nav-link text-white">로그인</a></li>

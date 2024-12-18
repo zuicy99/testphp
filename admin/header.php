@@ -1,9 +1,3 @@
-<?php
-// session_start();
-
-// $ses_id = (isset($_SESSION['ses_id']) && $_SESSION['ses_id'] != "") ? $_SESSION['ses_id'] : "";
-// $ses_level = (isset($_SESSION['ses_level']) && $_SESSION['ses_level'] != "") ? $_SESSION['ses_level'] : "";
-?>
 
 
 <!DOCTYPE html>
@@ -30,7 +24,7 @@
 
                     <ul class="nav col-12 col-lg-auto my-2 justify-content-center my-md-0 text-small">
                         <li><a href="imsi.php" class="nav-link text-white">테스트</a></li>
-                        <!-- <li><a href="board.php" class="nav-link text-white">게시판</a></li> -->
+                        <li><a href="board.php" class="nav-link text-white">게시판</a></li>
                         <!-- <li><a href="../mypage.php" class="nav-link text-white">마이페이지</a></li> -->
                         <li><a href="member.php" class="nav-link text-white">회원관리</a></li>
                         <li><a href="../index.php" class="nav-link text-white">관리자모드해제</a></li>
